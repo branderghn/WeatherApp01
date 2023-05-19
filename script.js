@@ -50,3 +50,18 @@ function displayForecast(response) {
     forecastHtml = forecastHtml + `</div>`;
     forecastElement.innerHTML = forecastHtml;
 }
+
+function search(city) {
+    let apiKey = "bb0df6985c2eab6a171d64a6bacbb4e1";
+    let apiUrl = `https://api.openweathermap.org/data/3.0/weather?q=${city}&appid=${apiKey}&units=imperial`;
+    axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    let temperatureElement = document.querySelector("#city-input");
+    search(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
